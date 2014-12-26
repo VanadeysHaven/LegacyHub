@@ -3,7 +3,11 @@ version: 1.0
 description: LegacyHub
 author: cooltimmetje
 main: me.LegacyDev.Hub.Main
+depend: [Reloader]
 commands:
     resetinv:
         description: resets inventory for admins
         permission: lchub.admin
+    lchubreload:
+        description: reloads the plugin
+        permission: lchub.reload

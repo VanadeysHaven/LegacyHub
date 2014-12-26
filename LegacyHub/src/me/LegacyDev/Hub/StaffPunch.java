@@ -38,11 +38,12 @@ public class StaffPunch implements Listener {
 									Bukkit.getWorld("world").playSound(punched.getLocation(), Sound.EXPLODE, 100, 1);
 									ParticleEffect.EXPLOSION_HUGE.display(3, 3, 3, 1, 10, puncher.getLocation(), 20);
 									Bukkit.broadcastMessage("§a" + puncher.getName() + " §3punched §a" + punched.getName() + " §3into the sky!");
+									//TODO Placeholder message...
 								}
 							}
 						}
 					} else {
-						punched.sendMessage("§cThis staff member has punching turned off.");
+						puncher.sendMessage("§cThis staff member has punching turned off.");
 					}
 				}
 			}

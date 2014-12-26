@@ -20,15 +20,26 @@ public class Main extends JavaPlugin{ //Extending JavaPlugin so that Bukkit know
 
 		getLogger().info("[Hub] Registering Commands...");
 		getCommand("resetinv").setExecutor(new SetInventory());
+		getCommand("lchubreload").setExecutor(new ReloadCommand());
 
-		//		getLogger().info("[Hub] Hooking into APIs...");
+		getLogger().info("[Hub] Hooking into APIs...");
+		if (getServer().getPluginManager().getPlugin("Reloader") != null && getServer().getPluginManager().getPlugin("Reloader").isEnabled()){
+			getLogger().info("[Hub] Successfully hooked into Reloader!");
+		} else {
+			getLogger().warning("[Hub] Failed to hook into Reloader, disabling plugin!");
+			getPluginLoader().disablePlugin(this);
+		}
 
 		stopLoad();
+		Bukkit.broadcastMessage("§aHub plugin enabled!");
+		//TODO Placeholder message...
 	}
 
 	public void onDisable() {
 		plugin = null; //To stop memory leeks
 		getServer().resetRecipes();
+		Bukkit.broadcastMessage("§aHub plugin disabled!");
+		//TODO Placeholder message...
 	}
 
 
