@@ -49,9 +49,9 @@ public class CompassMenu implements Listener {
 		ArrayList<String> gamesLore = new ArrayList<String>();
 		gamesLore.add("§7§oPlay games.");
 		//TODO Placeholder message...
-		survivalMeta.setDisplayName("§bGames §8» §3Click to connect.");
-		survivalMeta.setLore(gamesLore);
-		survival.setItemMeta(gamesMeta);
+		gamesMeta.setDisplayName("§bGames §8» §3Click to connect.");
+		gamesMeta.setLore(gamesLore);
+		games.setItemMeta(gamesMeta);
 		compass.setItem(1, games);
 		
 		p.openInventory(compass);

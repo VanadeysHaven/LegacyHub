@@ -1,6 +1,7 @@
 package me.LegacyDev.Hub;
 
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -23,11 +24,13 @@ public class JoinQuitEvent implements Listener {
 			p.setLevel(0);
 			p.setExp(0F);
 			event.setJoinMessage(null);
+			p.setGameMode(GameMode.ADVENTURE);
 		} else {
 			event.setJoinMessage(p.getName() + " §ejoined the hub.");
 			//TODO Placeholder message...
 		}
 		
+		p.setAllowFlight(true);
 		Location spawn = new Location(Bukkit.getServer().getWorld("world"), -407.5, 30, 699.5, (float)0, (float)0);
 		p.teleport(spawn);
 
