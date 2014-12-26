@@ -1,7 +1,6 @@
 package me.LegacyDev.Hub;
 
 import org.bukkit.Bukkit;
-//import org.bukkit.block.Block;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -16,7 +15,7 @@ public class Main extends JavaPlugin{ //Extending JavaPlugin so that Bukkit know
 		plugin = this;
 
 		getLogger().info("[Hub] Registering Events...");
-		registerEvents(this, new JoinQuitEvent(), new CompassMenu());
+		registerEvents(this, new JoinQuitEvent(), new CompassMenu(), new PlayerVisibilty());
 
 		getLogger().info("[Hub] Registering Commands...");
 		getCommand("resetinv").setExecutor(new SetInventory());
@@ -56,10 +55,5 @@ public class Main extends JavaPlugin{ //Extending JavaPlugin so that Bukkit know
 		loadTime = System.currentTimeMillis() - loadTime;
 		getLogger().info("[Hub] Plugin enabled! (" + loadTime + "ms)");
 	}
-
-//	static Block spawn = Bukkit.getServer().getWorld("world").getBlockAt(120, 100, -65);
-	//TODO set spawn coords
-
-
 
 }

@@ -48,7 +48,7 @@ public class SetInventory implements CommandExecutor {
 	public static ItemStack cosmetic(){
 		ItemStack cosmetic = new ItemStack(Material.CHEST,1);
 		ItemMeta cosmeticMeta = cosmetic.getItemMeta();
-		cosmeticMeta.setDisplayName("§bPlayer visibilty §8» §cOFF");
+		cosmeticMeta.setDisplayName("§bCosmetic Menu §8» §3Right Click");
 		ArrayList<String> cosmeticLore = new ArrayList<String>();
 		cosmeticLore.add("§7§oView all cosmetic items.");
 		cosmeticMeta.setLore(cosmeticLore);
