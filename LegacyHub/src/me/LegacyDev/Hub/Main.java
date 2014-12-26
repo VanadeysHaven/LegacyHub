@@ -18,8 +18,8 @@ public class Main extends JavaPlugin{ //Extending JavaPlugin so that Bukkit know
 		getLogger().info("[Hub] Registering Events...");
 		registerEvents(this, new JoinQuitEvent(), new CompassMenu());
 
-		//		getLogger().info("[Hub] Registering Commands...");
-		//		getCommand("tp").setExecutor(new TPCommand());
+				getLogger().info("[Hub] Registering Commands...");
+				getCommand("resetinv").setExecutor(new SetInventory());
 
 		//		getLogger().info("[Hub] Hooking into APIs...");
 

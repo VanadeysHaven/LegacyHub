@@ -3,11 +3,13 @@ package me.LegacyDev.Hub;
 import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -56,4 +58,32 @@ public class CompassMenu implements Listener {
 		
 	}
 	
+	@EventHandler
+	public void onInventoryClick(InventoryClickEvent event){
+		
+		if(!ChatColor.stripColor(event.getInventory().getName()).equalsIgnoreCase("Server Selector"))
+			return;
+		
+		Player p = (Player) event.getWhoClicked();
+		event.setCancelled(true);
+
+		if(!event.getCurrentItem().hasItemMeta()){
+			return;
+		}
+
+		switch (event.getCurrentItem().getType()){
+		case GRASS:
+			p.sendMessage("TODO » Survival");
+			//TODO Insert teleport here.
+			p.closeInventory();
+			break;
+		case SLIME_BALL:
+			p.sendMessage("TODO » Games");
+			//TODO Insert teleport here.
+			p.closeInventory();
+		default:
+			break;
+		}
+
+	}
 }

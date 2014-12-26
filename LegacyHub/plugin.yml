@@ -1,0 +1,9 @@
+ name: LegacyHub
+ version: 1.0
+ description: LegacyHub
+ author: cooltimmetje
+ main: me.LegacyDev.Hub.Main
+ commands:
+   resetinv:
+      description: resets inventory for admins
+      permission: lchub.admin
