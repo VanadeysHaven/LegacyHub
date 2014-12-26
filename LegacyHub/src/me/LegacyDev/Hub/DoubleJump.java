@@ -27,7 +27,7 @@ public class DoubleJump implements Listener {
 			p.setFallDistance(3000);
 			p.setExp(0);
 			p.playSound(p.getLocation(), Sound.ENDERDRAGON_WINGS, 100, 1);
-			
+
 		}
 	}
 
@@ -37,13 +37,14 @@ public class DoubleJump implements Listener {
 		if(e instanceof Player) {
 			if(event.getCause() == DamageCause.FALL){
 				Player p = (Player)e;
-				event.setCancelled(true);
-				p.setAllowFlight(true);
-				p.setExp(1);
+				if(!Preferences.doubleJumpOff.contains(p.getName())){
+					event.setCancelled(true);
+					p.setAllowFlight(true);
+					p.setExp(1);
+				}
 			}
 		}
 	}
-
 
 
 }
