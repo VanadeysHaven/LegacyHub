@@ -23,7 +23,7 @@ public class JoinQuitEvent implements Listener {
 			event.setJoinMessage(p.getName() + " §ejoined the hub.");
 			//TODO Placeholder message...
 		}
-		p.teleport(Main.spawn.getLocation());
+//		p.teleport(Main.spawn.getLocation());
 
 	}
 
