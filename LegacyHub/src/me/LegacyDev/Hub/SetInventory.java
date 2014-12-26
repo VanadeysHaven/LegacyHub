@@ -72,6 +72,9 @@ public class SetInventory implements CommandExecutor {
 				setInventory(p);
 				p.sendMessage("§aInv resetted");
 				//TODO Placeholder message...
+				if(PlayerVisibilty.playerOff.contains(p.getName())){
+					p.getInventory().setItem(1, playersOff());
+				}
 			}
 		}
 		return false;

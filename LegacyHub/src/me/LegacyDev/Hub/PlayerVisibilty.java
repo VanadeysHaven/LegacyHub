@@ -10,13 +10,14 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class PlayerVisibilty implements Listener {
 
 	private Map<String, Long> lastUsage = new HashMap<String, Long>();
 	private final int cdtime = 3;
-	private ArrayList<String> playerOff = new ArrayList<String>();
+	public static ArrayList<String> playerOff = new ArrayList<String>();
 
 	@SuppressWarnings("deprecation")
 	@EventHandler
@@ -36,7 +37,9 @@ public class PlayerVisibilty implements Listener {
 
 					for (Player pl : Bukkit.getServer().getOnlinePlayers()){
 						if(pl != p){
-							p.getPlayer().hidePlayer(pl);
+							if(!pl.hasPermission("lchub.hideexempt")){
+								p.getPlayer().hidePlayer(pl);
+							}
 						}
 					}
 
@@ -52,7 +55,9 @@ public class PlayerVisibilty implements Listener {
 
 					for (Player pl : Bukkit.getServer().getOnlinePlayers()){
 						if(pl != p){
-							p.getPlayer().showPlayer(pl);
+							if(!pl.hasPermission("lchub.hideexempt")){
+								p.getPlayer().showPlayer(pl);
+							}
 						}
 					}
 
@@ -74,12 +79,38 @@ public class PlayerVisibilty implements Listener {
 		} else {
 			int timeLeft = (int) (cdtime - ((System.currentTimeMillis() - lastUsed) / 1000));
 			if(timeLeft != 1){
-				p.sendMessage("&cNot so fast my friend! Please wait for another &a" + timeLeft + " &cseconds.");
+				p.sendMessage("§cNot so fast my friend! Please wait for another §a" + timeLeft + " §cseconds.");
 			} else {
-				p.sendMessage("&cNot so fast my friend! Please wait for &a" + timeLeft + " &cmore second.");
+				p.sendMessage("§cNot so fast my friend! Please wait for §a" + timeLeft + " §cmore second.");
 			}
 			return false;
 		}
+
+	}
+
+	@SuppressWarnings("deprecation")
+	@EventHandler
+	public void onPlayerJoin (PlayerJoinEvent event){
+		Player pjoin = event.getPlayer();
+
+		for(Player pl : Bukkit.getServer().getOnlinePlayers()){
+			if(pl != pjoin){
+				if (playerOff.contains(pl.getName())){
+					if(!pjoin.hasPermission("lchub.hideexempt")){
+						pl.hidePlayer(pjoin);
+					}
+				} else {
+					pl.showPlayer(pjoin);
+				}
+			} else {
+				if(playerOff.contains(pjoin)){
+					if(!pjoin.hasMetadata("lchub.admin")){
+						pjoin.getInventory().setItem(1, SetInventory.playersOff());
+					}
+				}
+			}
+		}
+
 
 	}
 
