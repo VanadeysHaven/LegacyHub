@@ -26,9 +26,9 @@ public class SetInventory implements CommandExecutor {
 	public static ItemStack playersOn(){
 		ItemStack playerOn = new ItemStack(Material.INK_SACK,1 ,(byte)10);
 		ItemMeta playerOnMeta = playerOn.getItemMeta();
-		playerOnMeta.setDisplayName("§bPlayer visibilty §8» §aON");
+		playerOnMeta.setDisplayName("§bPlayer visibility §8» §aON");
 		ArrayList<String> playerOnLore = new ArrayList<String>();
-		playerOnLore.add("§7§oToggle player visibilty.");
+		playerOnLore.add("§7§oToggle player visibility.");
 		playerOnMeta.setLore(playerOnLore);
 		playerOn.setItemMeta(playerOnMeta);
 		return playerOn;
@@ -37,9 +37,9 @@ public class SetInventory implements CommandExecutor {
 	public static ItemStack playersOff(){
 		ItemStack playerOff = new ItemStack(Material.INK_SACK,1 ,(byte)8);
 		ItemMeta playerOffMeta = playerOff.getItemMeta();
-		playerOffMeta.setDisplayName("§bPlayer visibilty §8» §cOFF");
+		playerOffMeta.setDisplayName("§bPlayer visibility §8» §cOFF");
 		ArrayList<String> playerOffLore = new ArrayList<String>();
-		playerOffLore.add("§7§oToggle player visibilty.");
+		playerOffLore.add("§7§oToggle player visibility.");
 		playerOffMeta.setLore(playerOffLore);
 		playerOff.setItemMeta(playerOffMeta);
 		return playerOff;
@@ -55,13 +55,25 @@ public class SetInventory implements CommandExecutor {
 		cosmetic.setItemMeta(cosmeticMeta);
 		return cosmetic;
 	}
+	
+	public static ItemStack prefs(){
+		ItemStack prefs = new ItemStack(Material.REDSTONE_COMPARATOR,1);
+		ItemMeta prefsMeta = prefs.getItemMeta();
+		prefsMeta.setDisplayName("§bPreferences Menu §8» §3Right Click");
+		ArrayList<String> prefsLore = new ArrayList<String>();
+		prefsLore.add("§7§oChange your preferences.");
+		prefsMeta.setLore(prefsLore);
+		prefs.setItemMeta(prefsMeta);
+		return prefs;
+	}
 
 	public static void setInventory(Player p){
 
 		p.getInventory().clear();
 		p.getInventory().setItem(0, compass());
 		p.getInventory().setItem(1, playersOn());
-		p.getInventory().setItem(8, cosmetic());
+		p.getInventory().setItem(7, cosmetic());
+		p.getInventory().setItem(8, prefs());
 
 	}
 
@@ -72,7 +84,7 @@ public class SetInventory implements CommandExecutor {
 				setInventory(p);
 				p.sendMessage("§aInv resetted");
 				//TODO Placeholder message...
-				if(PlayerVisibilty.playerOff.contains(p.getName())){
+				if(Preferences.playerOff.contains(p.getName())){
 					p.getInventory().setItem(1, playersOff());
 				}
 			}

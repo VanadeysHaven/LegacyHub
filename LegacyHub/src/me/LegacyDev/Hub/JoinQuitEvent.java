@@ -22,7 +22,6 @@ public class JoinQuitEvent implements Listener {
 			p.setFoodLevel(20);
 			p.setSaturation(8F);
 			p.setLevel(0);
-			p.setExp(0F);
 			event.setJoinMessage(null);
 			p.setGameMode(GameMode.ADVENTURE);
 		} else {
@@ -31,6 +30,7 @@ public class JoinQuitEvent implements Listener {
 		}
 		
 		p.setAllowFlight(true);
+		p.setExp(1);
 		Location spawn = new Location(Bukkit.getServer().getWorld("world"), -407.5, 30, 699.5, (float)0, (float)0);
 		p.teleport(spawn);
 

@@ -15,7 +15,8 @@ public class Main extends JavaPlugin{ //Extending JavaPlugin so that Bukkit know
 		plugin = this;
 
 		getLogger().info("[Hub] Registering Events...");
-		registerEvents(this, new JoinQuitEvent(), new CompassMenu(), new PlayerVisibilty(), new DoubleJump());
+		registerEvents(this, new JoinQuitEvent(), new CompassMenu(), new PlayerVisibilty(), new DoubleJump(), new Preferences(),
+				new StaffPunch());
 
 		getLogger().info("[Hub] Registering Commands...");
 		getCommand("resetinv").setExecutor(new SetInventory());

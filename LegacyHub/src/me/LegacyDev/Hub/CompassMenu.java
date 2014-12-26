@@ -81,6 +81,7 @@ public class CompassMenu implements Listener {
 			p.sendMessage("TODO » Games");
 			//TODO Insert teleport here.
 			p.closeInventory();
+			break;
 		default:
 			break;
 		}

@@ -1,6 +1,5 @@
 package me.LegacyDev.Hub;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,9 +16,7 @@ public class PlayerVisibilty implements Listener {
 
 	private Map<String, Long> lastUsage = new HashMap<String, Long>();
 	private final int cdtime = 3;
-	public static ArrayList<String> playerOff = new ArrayList<String>();
 
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onItemInteract(PlayerInteractEvent event){
 		Player p = event.getPlayer();
@@ -31,17 +28,11 @@ public class PlayerVisibilty implements Listener {
 				boolean allowed = cooldown(p);
 				if(allowed == true){
 
-					playerOff.add(p.getName());
+					Preferences.playerOff.add(p.getName());
 					lastUsage.put(p.getName(), System.currentTimeMillis());
 					p.getInventory().setItem(1, SetInventory.playersOff());
 
-					for (Player pl : Bukkit.getServer().getOnlinePlayers()){
-						if(pl != p){
-							if(!pl.hasPermission("lchub.hideexempt")){
-								p.getPlayer().hidePlayer(pl);
-							}
-						}
-					}
+					hidePlayers(p);
 
 				}
 
@@ -49,17 +40,11 @@ public class PlayerVisibilty implements Listener {
 
 				boolean allowed = cooldown(p);
 				if(allowed == true){
-					playerOff.remove(p.getName());
+					Preferences.playerOff.remove(p.getName());
 					lastUsage.put(p.getName(), System.currentTimeMillis());
 					p.getInventory().setItem(1, SetInventory.playersOn());
 
-					for (Player pl : Bukkit.getServer().getOnlinePlayers()){
-						if(pl != p){
-							if(!pl.hasPermission("lchub.hideexempt")){
-								p.getPlayer().showPlayer(pl);
-							}
-						}
-					}
+					showPlayers(p);
 
 				}
 			}
@@ -95,7 +80,7 @@ public class PlayerVisibilty implements Listener {
 
 		for(Player pl : Bukkit.getServer().getOnlinePlayers()){
 			if(pl != pjoin){
-				if (playerOff.contains(pl.getName())){
+				if (Preferences.playerOff.contains(pl.getName())){
 					if(!pjoin.hasPermission("lchub.hideexempt")){
 						pl.hidePlayer(pjoin);
 					}
@@ -103,8 +88,8 @@ public class PlayerVisibilty implements Listener {
 					pl.showPlayer(pjoin);
 				}
 			} else {
-				if(playerOff.contains(pjoin)){
-					if(!pjoin.hasMetadata("lchub.admin")){
+				if(Preferences.playerOff.contains(pjoin)){
+					if(!pjoin.hasPermission("lchub.admin")){
 						pjoin.getInventory().setItem(1, SetInventory.playersOff());
 					}
 				}
@@ -112,6 +97,28 @@ public class PlayerVisibilty implements Listener {
 		}
 
 
+	}
+
+	@SuppressWarnings("deprecation")
+	public static void hidePlayers(Player p){
+		for (Player pl : Bukkit.getServer().getOnlinePlayers()){
+			if(pl != p){
+				if(!pl.hasPermission("lchub.hideexempt")){
+					p.getPlayer().hidePlayer(pl);
+				}
+			}
+		}
+	}
+
+	@SuppressWarnings("deprecation")
+	public static void showPlayers(Player p){
+		for (Player pl : Bukkit.getServer().getOnlinePlayers()){
+			if(pl != p){
+				if(!pl.hasPermission("lchub.hideexempt")){
+					p.getPlayer().showPlayer(pl);
+				}
+			}
+		}
 	}
 
 }
