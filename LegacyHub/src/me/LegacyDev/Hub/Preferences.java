@@ -122,7 +122,7 @@ public class Preferences implements Listener {
 		ItemMeta punchNoStaffMeta = punchNoStaff.getItemMeta();
 		punchNoStaffMeta.setDisplayName("§bPunching §8» §4§oNot Available");
 		ArrayList<String> punchNoStaffLore = new ArrayList<String>();
-		punchNoStaffLore.add("§7§oThis is only avaiable for staff members");
+		punchNoStaffLore.add("§7§oThis is only available for staff members");
 		punchNoStaffMeta.setLore(punchNoStaffLore);
 		punchNoStaff.setItemMeta(punchNoStaffMeta);
 		return punchNoStaff;

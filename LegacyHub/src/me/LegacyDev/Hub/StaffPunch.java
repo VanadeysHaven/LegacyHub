@@ -39,6 +39,7 @@ public class StaffPunch implements Listener {
 									ParticleEffect.EXPLOSION_HUGE.display(3, 3, 3, 1, 10, puncher.getLocation(), 20);
 									Bukkit.broadcastMessage("§a" + puncher.getName() + " §3punched §a" + punched.getName() + " §3into the sky!");
 									//TODO Placeholder message...
+									//TODO Find fix for creative
 								}
 							}
 						}

@@ -1,7 +1,13 @@
 package me.LegacyDev.Hub;
 
+import java.util.ArrayList;
+
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -16,7 +22,7 @@ public class Main extends JavaPlugin{ //Extending JavaPlugin so that Bukkit know
 
 		getLogger().info("[Hub] Registering Events...");
 		registerEvents(this, new JoinQuitEvent(), new CompassMenu(), new PlayerVisibilty(), new DoubleJump(), new Preferences(),
-				new StaffPunch());
+				new StaffPunch(), new CosmeticMenu(), new GadgetMenu());
 
 		getLogger().info("[Hub] Registering Commands...");
 		getCommand("resetinv").setExecutor(new SetInventory());
@@ -38,7 +44,7 @@ public class Main extends JavaPlugin{ //Extending JavaPlugin so that Bukkit know
 	public void onDisable() {
 		plugin = null; //To stop memory leeks
 		getServer().resetRecipes();
-		Bukkit.broadcastMessage("§aHub plugin disabled!");
+		Bukkit.broadcastMessage("§cHub plugin disabled!");
 		//TODO Placeholder message...
 	}
 
@@ -68,4 +74,16 @@ public class Main extends JavaPlugin{ //Extending JavaPlugin so that Bukkit know
 		getLogger().info("[Hub] Plugin enabled! (" + loadTime + "ms)");
 	}
 
+	public static void createDisplay(Material material, Inventory inv, int Slot, String name, String lore) {
+		ItemStack item = new ItemStack(material);
+		ItemMeta meta = item.getItemMeta();
+		meta.setDisplayName(name.replace('&', '§'));
+		ArrayList<String> Lore = new ArrayList<String>();
+		Lore.add(lore.replace('&', '§'));
+		meta.setLore(Lore);
+		item.setItemMeta(meta);
+
+		inv.setItem(Slot, item); 
+
+	}
 }
