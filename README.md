@@ -17,5 +17,5 @@ Permissions:
     - Gives full access to all cosmetic items.
     lchub.cosmetic.gadget.*
       - Gives full access to all gadgets.
-    lchub.cosmetic.gadget.paintball
-      - Gives access to the paintball gun + 3 base colors (Blue, Yellow, Red)
+      lchub.cosmetic.gadget.paintball
+        - Gives access to the paintball gun + 3 base colors (Blue, Yellow, Red)
