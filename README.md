@@ -13,3 +13,9 @@ Permissions:
     - Supposed to be given to staff members, players with this permission can punched.
   lchub.reload
     - Player can reload the plugin.
+  lchub.cosmetic.*
+    - Gives full access to all cosmetic items.
+    lchub.cosmetic.gadget.*
+      - Gives full access to all gadgets.
+    lchub.cosmetic.gadget.paintball
+      - Gives access to the paintball gun + 3 base colors (Blue, Yellow, Red)
