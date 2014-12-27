@@ -11,3 +11,5 @@ Permissions:
     - Player can punch staff members.
   lchub.punch.canbe
     - Supposed to be given to staff members, players with this permission can punched.
+  lchub.reload
+    - Player can reload the plugin.
