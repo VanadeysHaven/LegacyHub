@@ -27,11 +27,11 @@ public class StaffPunch implements Listener {
 			if(puncher.hasPermission("lchub.punch.can")){
 				if(punched.hasPermission("lchub.punch.canbe")){
 					if(!Preferences.punchOff.contains(punched.getName())){
+						if(!Preferences.punchOff.contains(puncher.getName())){
 						boolean allowedPuncher = cooldownPuncher(puncher);
 						if(allowedPuncher == true){
 							boolean allowedPunched = cooldownPunched(punched, puncher);
 							if(allowedPunched == true){
-								if(!Preferences.punchOff.contains(punched.getName())){
 									lastPuncher.put(puncher.getName(), System.currentTimeMillis());
 									lastPunched.put(punched.getName(), System.currentTimeMillis());
 									punched.setVelocity(new Vector(0,3,0));
@@ -42,6 +42,8 @@ public class StaffPunch implements Listener {
 									//TODO Find fix for creative
 								}
 							}
+						} else {
+							puncher.sendMessage("§cYou have punching turned off.");
 						}
 					} else {
 						puncher.sendMessage("§cThis staff member has punching turned off.");

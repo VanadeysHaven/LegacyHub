@@ -22,7 +22,7 @@ public class Main extends JavaPlugin{ //Extending JavaPlugin so that Bukkit know
 
 		getLogger().info("[Hub] Registering Events...");
 		registerEvents(this, new JoinQuitEvent(), new CompassMenu(), new PlayerVisibilty(), new DoubleJump(), new Preferences(),
-				new StaffPunch(), new CosmeticMenu(), new GadgetMenu());
+				new StaffPunch(), new CosmeticMenu(), new GadgetMenu(), new PaintballGun());
 
 		getLogger().info("[Hub] Registering Commands...");
 		getCommand("resetinv").setExecutor(new SetInventory());
@@ -74,7 +74,21 @@ public class Main extends JavaPlugin{ //Extending JavaPlugin so that Bukkit know
 		getLogger().info("[Hub] Plugin enabled! (" + loadTime + "ms)");
 	}
 
-	public static void createDisplay(Material material, Inventory inv, int Slot, String name, String lore) {
+	public static void createDisplay(Material material, int amount, int data, Inventory inv, int Slot, String name, String lore) {
+		ItemStack item = new ItemStack(material, amount, (byte) data);
+		ItemMeta meta = item.getItemMeta();
+		if(!(name == null)){
+			meta.setDisplayName(name.replace('&', '§'));
+		}
+		ArrayList<String> Lore = new ArrayList<String>();
+		Lore.add(lore.replace('&', '§'));
+		meta.setLore(Lore);
+		item.setItemMeta(meta);
+
+		inv.setItem(Slot, item);
+	}
+
+	public static ItemStack createItem(Material material, String name, String lore) {
 		ItemStack item = new ItemStack(material);
 		ItemMeta meta = item.getItemMeta();
 		meta.setDisplayName(name.replace('&', '§'));
@@ -82,8 +96,14 @@ public class Main extends JavaPlugin{ //Extending JavaPlugin so that Bukkit know
 		Lore.add(lore.replace('&', '§'));
 		meta.setLore(Lore);
 		item.setItemMeta(meta);
+		return item;
+	}
 
-		inv.setItem(Slot, item); 
-
+	public static ItemStack noPerm() {
+		ItemStack item = new ItemStack(Material.STAINED_GLASS_PANE, 1,(byte) 14);
+		ItemMeta meta = item.getItemMeta();
+		meta.setDisplayName("§cNo Permission");
+		item.setItemMeta(meta);
+		return item;
 	}
 }

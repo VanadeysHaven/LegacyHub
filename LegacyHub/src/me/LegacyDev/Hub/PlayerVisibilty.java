@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -21,35 +22,36 @@ public class PlayerVisibilty implements Listener {
 	public void onItemInteract(PlayerInteractEvent event){
 		Player p = event.getPlayer();
 		ItemStack pitemhand = p.getItemInHand();
+		if(pitemhand.getType() == Material.INK_SACK){
+			if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK){
+				if(pitemhand.getItemMeta().getDisplayName().contains("ON")){
 
-		if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK){
-			if(pitemhand.getItemMeta().getDisplayName().contains("ON")){
+					boolean allowed = cooldown(p);
+					if(allowed == true){
 
-				boolean allowed = cooldown(p);
-				if(allowed == true){
+						Preferences.playerOff.add(p.getName());
+						lastUsage.put(p.getName(), System.currentTimeMillis());
+						p.getInventory().setItem(1, SetInventory.playersOff());
 
-					Preferences.playerOff.add(p.getName());
-					lastUsage.put(p.getName(), System.currentTimeMillis());
-					p.getInventory().setItem(1, SetInventory.playersOff());
+						hidePlayers(p);
 
-					hidePlayers(p);
+					}
 
+				} else if (pitemhand.getItemMeta().getDisplayName().contains("OFF")){
+
+					boolean allowed = cooldown(p);
+					if(allowed == true){
+						Preferences.playerOff.remove(p.getName());
+						lastUsage.put(p.getName(), System.currentTimeMillis());
+						p.getInventory().setItem(1, SetInventory.playersOn());
+
+						showPlayers(p);
+
+					}
 				}
 
-			} else if (pitemhand.getItemMeta().getDisplayName().contains("OFF")){
-
-				boolean allowed = cooldown(p);
-				if(allowed == true){
-					Preferences.playerOff.remove(p.getName());
-					lastUsage.put(p.getName(), System.currentTimeMillis());
-					p.getInventory().setItem(1, SetInventory.playersOn());
-
-					showPlayers(p);
-
-				}
-			}
-
-		} 
+			} 
+		}
 	}
 
 	public boolean cooldown(Player p){

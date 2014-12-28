@@ -36,6 +36,7 @@ public class JoinQuitEvent implements Listener {
 
 	}
 
+	@EventHandler
 	public void onPlayerLeave(PlayerQuitEvent event){
 		Player p = event.getPlayer();
 	

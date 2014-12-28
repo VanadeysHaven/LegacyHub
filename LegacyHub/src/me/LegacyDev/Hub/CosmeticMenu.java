@@ -31,15 +31,14 @@ public class CosmeticMenu implements Listener {
 	public void openCosmetic(Player p) {
 	Inventory cosmetic = Bukkit.createInventory(null, 27, "§8§oCosmetic menu");
 	
-	Main.createDisplay(Material.BONE, cosmetic, 10, "&bPets &8» &cComing Soon", "&7&oChoose a little friend that will follow you around!");
-	Main.createDisplay(Material.SKULL_ITEM, cosmetic, 12, "&bDisguises &8» &cComing Soon", "&7&oMutate yourself into any mob!");
-	Main.createDisplay(Material.PISTON_BASE, cosmetic, 14, "&bGadgets &8» &cComing Soon", "&7&oGet some kind of new technology, not responsible if it blows up.");
-	Main.createDisplay(Material.IRON_CHESTPLATE, cosmetic, 16, "&bWardrobe &8» &cComing Soon", "&7&oUpgrade your swag to level 9000!");
+	Main.createDisplay(Material.BONE, 1, 0, cosmetic, 10, "&bPets &8» &cComing Soon", "&7&oChoose a little friend that will follow you around!");
+	Main.createDisplay(Material.SKULL_ITEM, 1, 0, cosmetic, 12, "&bDisguises &8» &cComing Soon", "&7&oMutate yourself into any mob!");
+	Main.createDisplay(Material.PISTON_BASE, 1, 0, cosmetic, 14, "&bGadgets &8» &aClick to open", "&7&oGet some kind of new technology, not responsible if it blows up.");
+	Main.createDisplay(Material.IRON_CHESTPLATE, 1, 0, cosmetic, 16, "&bWardrobe &8» &cComing Soon", "&7&oUpgrade your swag to level 9000!");
 	
 	p.openInventory(cosmetic);
 	}
 	
-	@SuppressWarnings("unused")
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent event){
 		
@@ -58,8 +57,9 @@ public class CosmeticMenu implements Listener {
 //			break;
 //		case SKULL_ITEM:
 //			break;
-//		case PISTON_BASE:
-//			break;
+		case PISTON_BASE:
+			GadgetMenu.openGadget(p);
+			break;
 //		case IRON_CHESTPLATE:
 //			break;
 		default:
