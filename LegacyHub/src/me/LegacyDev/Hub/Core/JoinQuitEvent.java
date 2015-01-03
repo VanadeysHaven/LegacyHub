@@ -1,4 +1,4 @@
-package me.LegacyDev.Hub;
+package me.LegacyDev.Hub.Core;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;

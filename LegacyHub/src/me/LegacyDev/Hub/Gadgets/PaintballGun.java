@@ -1,7 +1,9 @@
-package me.LegacyDev.Hub;
+package me.LegacyDev.Hub.Gadgets;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import me.LegacyDev.Hub.Main;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

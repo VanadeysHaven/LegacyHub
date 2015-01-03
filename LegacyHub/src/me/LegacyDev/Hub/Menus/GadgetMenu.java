@@ -1,4 +1,7 @@
-package me.LegacyDev.Hub;
+package me.LegacyDev.Hub.Menus;
+
+import me.LegacyDev.Hub.Main;
+import me.LegacyDev.Hub.Gadgets.PaintballGun;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

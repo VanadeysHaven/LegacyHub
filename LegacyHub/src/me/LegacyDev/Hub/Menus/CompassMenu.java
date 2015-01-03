@@ -1,4 +1,4 @@
-package me.LegacyDev.Hub;
+package me.LegacyDev.Hub.Menus;
 
 import java.util.ArrayList;
 

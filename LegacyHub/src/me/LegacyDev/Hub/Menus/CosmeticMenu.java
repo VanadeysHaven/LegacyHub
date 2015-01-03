@@ -1,4 +1,6 @@
-package me.LegacyDev.Hub;
+package me.LegacyDev.Hub.Menus;
+
+import me.LegacyDev.Hub.Main;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -32,7 +34,7 @@ public class CosmeticMenu implements Listener {
 	Inventory cosmetic = Bukkit.createInventory(null, 27, "§8§oCosmetic menu");
 	
 	Main.createDisplay(Material.BONE, 1, 0, cosmetic, 10, "&bPets &8» &cComing Soon", "&7&oChoose a little friend that will follow you around!");
-	Main.createDisplay(Material.SKULL_ITEM, 1, 0, cosmetic, 12, "&bDisguises &8» &cComing Soon", "&7&oMutate yourself into any mob!");
+	Main.createDisplay(Material.SKULL_ITEM, 1, 4, cosmetic, 12, "&bDisguises &8» &aClick to open", "&7&oMutate yourself into any mob!");
 	Main.createDisplay(Material.PISTON_BASE, 1, 0, cosmetic, 14, "&bGadgets &8» &aClick to open", "&7&oGet some kind of new technology, not responsible if it blows up.");
 	Main.createDisplay(Material.IRON_CHESTPLATE, 1, 0, cosmetic, 16, "&bWardrobe &8» &cComing Soon", "&7&oUpgrade your swag to level 9000!");
 	
@@ -55,8 +57,9 @@ public class CosmeticMenu implements Listener {
 		switch (event.getCurrentItem().getType()){
 //		case BONE:
 //			break;
-//		case SKULL_ITEM:
-//			break;
+		case SKULL_ITEM:
+			DisguiseMenu.openDisguise(p);
+			break;
 		case PISTON_BASE:
 			GadgetMenu.openGadget(p);
 			break;

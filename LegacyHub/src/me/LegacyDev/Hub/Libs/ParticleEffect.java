@@ -1,4 +1,4 @@
-package me.LegacyDev.Hub;
+package me.LegacyDev.Hub.Libs;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -15,7 +15,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
-import me.LegacyDev.Hub.ReflectionUtils.PackageType;
+import me.LegacyDev.Hub.Libs.ReflectionUtils.PackageType;
 
 /**
  * <b>ParticleEffect Library</b>

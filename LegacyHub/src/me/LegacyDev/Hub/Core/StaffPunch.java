@@ -1,7 +1,10 @@
-package me.LegacyDev.Hub;
+package me.LegacyDev.Hub.Core;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import me.LegacyDev.Hub.Libs.ParticleEffect;
+import me.LegacyDev.Hub.Menus.Preferences;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;

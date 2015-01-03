@@ -1,6 +1,9 @@
-package me.LegacyDev.Hub;
+package me.LegacyDev.Hub.Menus;
 
 import java.util.ArrayList;
+
+import me.LegacyDev.Hub.Core.PlayerVisibilty;
+import me.LegacyDev.Hub.Core.SetInventory;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

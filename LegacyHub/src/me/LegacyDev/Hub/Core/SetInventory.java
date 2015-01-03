@@ -1,6 +1,8 @@
-package me.LegacyDev.Hub;
+package me.LegacyDev.Hub.Core;
 
 import java.util.ArrayList;
+
+import me.LegacyDev.Hub.Menus.Preferences;
 
 import org.bukkit.Material;
 import org.bukkit.command.Command;

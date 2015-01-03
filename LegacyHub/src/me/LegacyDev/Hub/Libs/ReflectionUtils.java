@@ -1,4 +1,4 @@
-package me.LegacyDev.Hub;
+package me.LegacyDev.Hub.Libs;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;

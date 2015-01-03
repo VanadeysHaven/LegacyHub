@@ -1,4 +1,6 @@
-package me.LegacyDev.Hub;
+package me.LegacyDev.Hub.Core;
+
+import me.LegacyDev.Hub.Menus.Preferences;
 
 import org.bukkit.GameMode;
 import org.bukkit.Sound;
