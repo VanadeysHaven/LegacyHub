@@ -10,6 +10,8 @@ import me.LegacyDev.Hub.Core.SetInventory;
 import me.LegacyDev.Hub.Core.StaffPunch;
 import me.LegacyDev.Hub.DisguisesCustomization.Creeper;
 import me.LegacyDev.Hub.DisguisesCustomization.Skeleton;
+import me.LegacyDev.Hub.DisguisesCustomization.Spider;
+import me.LegacyDev.Hub.DisguisesCustomization.Zombie;
 import me.LegacyDev.Hub.Gadgets.PaintballGun;
 import me.LegacyDev.Hub.Menus.CompassMenu;
 import me.LegacyDev.Hub.Menus.CosmeticMenu;
@@ -40,7 +42,7 @@ public class Main extends JavaPlugin{ //Extending JavaPlugin so that Bukkit know
 		getLogger().info("[Hub] Registering Events...");
 		registerEvents(this, new JoinQuitEvent(), new CompassMenu(), new PlayerVisibilty(), new DoubleJump(), new Preferences(),
 				new StaffPunch(), new CosmeticMenu(), new GadgetMenu(), new PaintballGun(), new DisguiseMenu(), new Creeper(),
-				new Skeleton());
+				new Skeleton(), new Spider(), new Zombie());
 
 		getLogger().info("[Hub] Registering Commands...");
 		getCommand("resetinv").setExecutor(new SetInventory());

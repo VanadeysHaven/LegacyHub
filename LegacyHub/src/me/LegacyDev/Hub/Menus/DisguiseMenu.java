@@ -5,10 +5,12 @@ import java.util.Map;
 
 import me.LegacyDev.Hub.Main;
 import me.LegacyDev.Hub.DisguisesCustomization.Creeper;
+import me.LegacyDev.Hub.DisguisesCustomization.Skeleton;
+import me.LegacyDev.Hub.DisguisesCustomization.Spider;
+import me.LegacyDev.Hub.DisguisesCustomization.Zombie;
 import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.DisguiseType;
 import me.libraryaddict.disguise.disguisetypes.MobDisguise;
-import me.libraryaddict.disguise.disguisetypes.watchers.LivingWatcher;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -102,27 +104,14 @@ public class DisguiseMenu implements Listener {
 			Creeper.openCreeper(p);
 			return;
 		} else if (curItemID == 51) {
-			me.LegacyDev.Hub.DisguisesCustomization.Skeleton.openSkeleton(p);
-			return;
-			//TODO Add customization			
-		} else if (curItemID == 52) {
-			MobDisguise dis = new MobDisguise(DisguiseType.SPIDER);
-			LivingWatcher watcher = (LivingWatcher) dis.getWatcher();
-			watcher.setCustomName(p.getDisplayName());
-			watcher.setCustomNameVisible(true);
-			DisguiseAPI.disguiseToAll(p, dis);
-			p.sendMessage(disguiseMsg);
-			disCooldown(p);
-			p.closeInventory();
+			Skeleton.openSkeleton(p);
 			return;		
 		} else if (curItemID == 52) {
-			MobDisguise dis = new MobDisguise(DisguiseType.ZOMBIE);
-			DisguiseAPI.disguiseToAll(p, dis);
-			p.sendMessage(disguiseMsg);
-			disCooldown(p);
-			p.closeInventory();
+			Spider.openSpider(p);
 			return;
-			//TODO Add customization			
+		} else if (curItemID == 54) {
+			Zombie.openZombie(p);
+			return;		
 		} else if (curItemID == 55) {
 			MobDisguise dis = new MobDisguise(DisguiseType.SLIME);
 			DisguiseAPI.disguiseToAll(p, dis);

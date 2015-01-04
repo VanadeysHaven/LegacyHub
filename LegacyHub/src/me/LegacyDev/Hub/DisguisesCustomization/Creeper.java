@@ -32,7 +32,7 @@ public class Creeper implements Listener {
 	public static void openCreeper(Player p){
 		Inventory inv = Bukkit.createInventory(null, 36, "§8§oCreeper customization");
 
-		Main.createDisplay(Material.MONSTER_EGG, 1, 50, inv, 1, "&aSelected disguise &8» &bCreeper", null);
+		Main.createDisplay(Material.MONSTER_EGG, 1, 50, inv, 0, "&aSelected disguise &8» &bCreeper", null);
 
 		Main.createDisplay(Material.BLAZE_ROD, 1, 0, inv, chargedIcon, "&aCharged Creeper", 
 				"&7&oSets if the glow of a charged creeper will be visible.");
