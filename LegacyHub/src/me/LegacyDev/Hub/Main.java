@@ -9,15 +9,18 @@ import me.LegacyDev.Hub.Core.PlayerVisibilty;
 import me.LegacyDev.Hub.Core.SetInventory;
 import me.LegacyDev.Hub.Core.StaffPunch;
 import me.LegacyDev.Hub.DisguisesCustomization.Creeper;
+import me.LegacyDev.Hub.DisguisesCustomization.Skeleton;
 import me.LegacyDev.Hub.Gadgets.PaintballGun;
 import me.LegacyDev.Hub.Menus.CompassMenu;
 import me.LegacyDev.Hub.Menus.CosmeticMenu;
 import me.LegacyDev.Hub.Menus.DisguiseMenu;
 import me.LegacyDev.Hub.Menus.GadgetMenu;
 import me.LegacyDev.Hub.Menus.Preferences;
+import me.libraryaddict.disguise.DisguiseAPI;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -36,7 +39,8 @@ public class Main extends JavaPlugin{ //Extending JavaPlugin so that Bukkit know
 
 		getLogger().info("[Hub] Registering Events...");
 		registerEvents(this, new JoinQuitEvent(), new CompassMenu(), new PlayerVisibilty(), new DoubleJump(), new Preferences(),
-				new StaffPunch(), new CosmeticMenu(), new GadgetMenu(), new PaintballGun(), new DisguiseMenu(), new Creeper());
+				new StaffPunch(), new CosmeticMenu(), new GadgetMenu(), new PaintballGun(), new DisguiseMenu(), new Creeper(),
+				new Skeleton());
 
 		getLogger().info("[Hub] Registering Commands...");
 		getCommand("resetinv").setExecutor(new SetInventory());
@@ -61,13 +65,18 @@ public class Main extends JavaPlugin{ //Extending JavaPlugin so that Bukkit know
 		//TODO Placeholder message...
 	}
 
+	@SuppressWarnings("deprecation")
 	public void onDisable() {
 		plugin = null; //To stop memory leeks
 		getServer().resetRecipes();
+		for(Player p : Bukkit.getOnlinePlayers()){
+			if(DisguiseAPI.isDisguised(p)){
+				DisguiseAPI.undisguiseToAll(p);
+			}
+		}
 		Bukkit.broadcastMessage("§cHub plugin disabled!");
 		//TODO Placeholder message...
 	}
-
 
 	//Much eaisier then registering events in 10 diffirent methods
 	public static void registerEvents(org.bukkit.plugin.Plugin plugin, Listener... listeners) {
@@ -80,10 +89,6 @@ public class Main extends JavaPlugin{ //Extending JavaPlugin so that Bukkit know
 	public static Plugin getPlugin() {
 		return plugin;
 	}
-
-
-
-	//	public static String TPTag = "§8[§cTP§8] §a";
 
 	public void startLoad(){
 		loadTime = System.currentTimeMillis();
@@ -128,4 +133,9 @@ public class Main extends JavaPlugin{ //Extending JavaPlugin so that Bukkit know
 		item.setItemMeta(meta);
 		return item;
 	}
+	
+	public static String toggle = "&7&oClick to toggle.".replace('&', '§');	
+	public static String disguiseMsgPart1 = "§aOther players will see you as a §6";
+	public static String disguiseMsgPart2 = " §afor the next 5 minutes.";
+	public static String select = "&7&oClick to select.".replace('&', '§');
 }

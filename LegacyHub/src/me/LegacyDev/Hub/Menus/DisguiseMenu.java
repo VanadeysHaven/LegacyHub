@@ -8,6 +8,7 @@ import me.LegacyDev.Hub.DisguisesCustomization.Creeper;
 import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.DisguiseType;
 import me.libraryaddict.disguise.disguisetypes.MobDisguise;
+import me.libraryaddict.disguise.disguisetypes.watchers.LivingWatcher;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -94,23 +95,21 @@ public class DisguiseMenu implements Listener {
 			return;
 		}
 
-		String disguiseMsg = "§aOther players will see you as a §6" + mobList.get(curItemID) + " §afor the next 5 minutes.";
+		String disguiseMsg = Main.disguiseMsgPart1 + mobList.get(curItemID) + Main.disguiseMsgPart2;
 		//TODO Placeholder Message...
 		
 		if(curItemID == 50){
 			Creeper.openCreeper(p);
 			return;
-			//TODO Add customization	
 		} else if (curItemID == 51) {
-			MobDisguise dis = new MobDisguise(DisguiseType.SKELETON);
-			DisguiseAPI.disguiseToAll(p, dis);
-			p.sendMessage(disguiseMsg);
-			disCooldown(p);
-			p.closeInventory();
+			me.LegacyDev.Hub.DisguisesCustomization.Skeleton.openSkeleton(p);
 			return;
 			//TODO Add customization			
 		} else if (curItemID == 52) {
 			MobDisguise dis = new MobDisguise(DisguiseType.SPIDER);
+			LivingWatcher watcher = (LivingWatcher) dis.getWatcher();
+			watcher.setCustomName(p.getDisplayName());
+			watcher.setCustomNameVisible(true);
 			DisguiseAPI.disguiseToAll(p, dis);
 			p.sendMessage(disguiseMsg);
 			disCooldown(p);
@@ -273,8 +272,8 @@ public class DisguiseMenu implements Listener {
 
 	}
 
-	public void disCooldown(Player p) {
-		// TODO Auto-generated method stub
+	public static void disCooldown(Player p) {
+		// TODO Create cooldown
 		
 	}
 

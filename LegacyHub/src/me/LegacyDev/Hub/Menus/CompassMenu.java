@@ -32,7 +32,7 @@ public class CompassMenu implements Listener {
 	}
 
 	public void openCompass(Player p) {
-		Inventory compass = Bukkit.createInventory(null, 9, "§8Server Selector");
+		Inventory compass = Bukkit.createInventory(null, 9, "§8§oServer Selector");
 		
 		ItemStack survival = new ItemStack(Material.GRASS);
 		ItemMeta survivalMeta = survival.getItemMeta();
